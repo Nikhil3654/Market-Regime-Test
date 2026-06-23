@@ -107,43 +107,6 @@ otherwise stay in cash
 
 These results are best read as baseline research outputs. A serious trading version would still need transaction costs, slippage, robustness checks, and walk forward retraining.
 
-## Result graphics
-
-### SPY Random Forest equity curve
-
-![SPY Random Forest equity curve](reports/SPY_equity_rf.png)
-
-### QQQ Random Forest equity curve
-
-![QQQ Random Forest equity curve](reports/QQQ_equity_rf.png)
-
-### IWM Random Forest equity curve
-
-![IWM Random Forest equity curve](reports/IWM_equity_rf.png)
-
-### SPY Random Forest confusion matrix
-
-![SPY Random Forest confusion matrix](reports/SPY_cm_rf.png)
-
-## Main outputs
-
-The main generated outputs are:
-
-```text
-outputs/day4/day4_backtest_summary.csv
-outputs/day4/day4_results.json
-outputs/day5/summary.json
-outputs/day5/plots/
-```
-
-The plots used in this README are copied into:
-
-```text
-reports/
-```
-
-so they render directly on GitHub.
-
 ## Project structure
 
 ```text
