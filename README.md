@@ -1,33 +1,56 @@
 # Market-Regime-Test
 
-Lightweight market regime detection and directional forecasting baselines with a simple probability threshold strategy backtest.
+A compact finance ML project that turns daily ETF price data into a complete research pipeline: feature engineering, market regime labeling, baseline modeling, backtesting, and visual diagnostics.
 
-## What this repo does
-- Builds a supervised dataset from daily OHLCV data for a small set of ETFs (example: SPY, QQQ, IWM)
-- Trains baseline classifiers for next day direction (Logistic Regression and Random Forest)
-- Evaluates predictive metrics (accuracy, F1, ROC AUC)
-- Runs a simple trading rule:
-  - go long when predicted probability of up move >= 0.55
-  - otherwise stay in cash
-- Produces equity curves and confusion matrices for quick sanity checks
+This is not meant to be a production trading system. The goal is to show a clean, skeptical, and reproducible finance workflow where every model result is connected back to time based evaluation and strategy behavior.
 
-## Dataset
-This project is designed to use publicly available market data (daily bars).  
-You can regenerate the dataset locally by running the dataset build script.
+## Why I built this
 
-Output artifact:
-- `data/processed/model_dataset.parquet`
+A lot of finance ML demos look impressive but quietly make common mistakes:
 
-## Quickstart (Windows)
-```powershell
-cd C:\github\Market-Regime-Test
-.\.venv\Scripts\Activate.ps1
+- random train test splits on time series
+- features that accidentally use future information
+- model accuracy without a trading interpretation
+- no baseline comparison
+- no visual inspection of failure cases
 
-# Build dataset
-python scripts\build_model_dataset.py
+This project keeps the setup intentionally simple and focuses on the fundamentals: clean features, time aware splits, interpretable baselines, and backtest diagnostics.
 
-# Day 4: baselines + backtest summary
-python scripts\run_day4.py
+## What the project does
 
-# Day 5: plots
-python scripts\make_day5_plots.py
+The pipeline uses daily ETF market data and builds a supervised learning dataset for next day direction prediction.
+
+It includes:
+
+- Feature engineering from daily OHLCV data
+- Time based train, validation, and test splits
+- Rule based market regime labels
+- Logistic Regression baseline
+- Random Forest baseline
+- Probability threshold strategy backtest
+- Equity curve plots
+- Confusion matrix diagnostics
+- CI safe tests for core logic
+
+## Pipeline overview
+
+```text
+Daily OHLCV data
+        |
+        v
+Backward looking features
+        |
+        v
+Time based split
+        |
+        v
+Regime labeling
+        |
+        v
+Model training
+        |
+        v
+Probability threshold backtest
+        |
+        v
+Metrics and plots
